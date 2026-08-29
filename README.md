@@ -1,6 +1,9 @@
 # ucs-kelompok-1
 
-Kelompok 1
+Anggota Kelompok 1 : 
+1. Tio Rizky Almunazir
+2. Serly Eldina
+3. M. Irfansyah
 
 Algoritma: Uninformed Search - Uniform Cost Search
 Topik: Optimasi Rute Perjalanan Harian Kampus Menggunakan Metode Uniform Cost Search (UCS)
