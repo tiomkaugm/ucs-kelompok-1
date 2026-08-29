@@ -1,3 +1,4 @@
+PRINSIP KECERDASAN ARTIFISIAL
 # ucs-kelompok-1
 
 Anggota Kelompok 1 : 
