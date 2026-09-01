@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!--
+  UCS Visualisasi Rute Optimal Kampus
+  ─────────────────────────────────────
+  Cara menjalankan:
+    1. python src/main.py          (generate trace.json ke src/visual/)
+    2. cd src && python -m http.server 8000
+    3. Buka http://localhost:8000/visual/visualize.html
+-->
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCS — Rute Optimal Kampus</title>
+<style>
+:root {
+  --bg:           #EEF2F7;
+  --panel:        #FFFFFF;
+  --border:       #D1D9E6;
+  --text:         #1A202C;
+  --muted:        #6B7280;
+  --accent:       #3B82F6;
+
+  --c-default:    #FFFFFF;
+  --c-frontier:   #DBEAFE;
+  --c-expanding:  #FEF3C7;
+  --c-explored:   #E5E7EB;
+  --c-optimal:    #DCFCE7;
+
+  --s-default:    #9CA3AF;
+  --s-start:      #EF4444;
+  --s-agenda:     #8B5CF6;
+  --s-expanding:  #F59E0B;
+  --s-optimal:    #16A34A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 22px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+header h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -.2px;
+}
+#step-counter {
+  font-size: .85rem;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Two-panel layout ── */
+#panels {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* ── Map panel ── */
+#map-panel {
+  flex: 1;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+#map-panel h2 { font-size: .9rem; font-weight: 600; margin-bottom: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+
+#campus-map {
+  width: 100%;
+  background: #F8FAFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.edge         { stroke: #CBD5E0; stroke-width: 1.8; }
+.edge-label   { font-size: 11px; fill: #6B7280; text-anchor: middle; dominant-baseline: middle; font-weight: 500; }
+.node-circle  { stroke-width: 2.5; transition: fill .25s, stroke .25s; }
+.node-abbrev  { font-size: 11px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: #374151; pointer-events: none; }
+.node-label   { font-size: 10px; text-anchor: middle; fill: #6B7280; pointer-events: none; }
+.optimal-edge { stroke: #16A34A; stroke-width: 4; stroke-linecap: round; opacity: .85; }
+.path-arrow   { fill: none; stroke: #16A34A; stroke-width: 2.5; marker-end: url(#arrow); }
+
+/* ── Legend ── */
+#legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.legend-dot {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  border: 2px solid #9CA3AF;
+  flex-shrink: 0;
+}
+
+/* ── Search panel ── */
+#search-panel {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.card-title {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+/* Stats bar */
+#stats-bar {
+  display: flex;
+  gap: 8px;
+}
+.stat-box {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+}
+.stat-val  { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+.stat-lbl  { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+
+/* Current state */
+#current-state {
+  font-size: .82rem;
+  line-height: 1.5;
+  min-height: 38px;
+}
+
+/* Frontier table */
+#frontier-wrap {
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+#frontier-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .78rem;
+}
+#frontier-table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: .7rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+#frontier-table td { padding: 5px 8px; border-bottom: 1px solid #F3F4F6; vertical-align: middle; }
+#frontier-table tr:last-child td { border-bottom: none; }
+.row-top { background: #FFFBEB; }
+.row-top td:first-child::before { content: "▶ "; color: #F59E0B; font-size: 9px; }
+.rank-cell { color: var(--muted); font-size: .72rem; width: 24px; }
+
+/* Log */
+#log-wrap {
+  max-height: 160px;
+  overflow-y: auto;
+  font-size: .75rem;
+  line-height: 1.55;
+}
+.log-entry { padding: 3px 0; border-bottom: 1px solid #F3F4F6; color: #374151; }
+.log-entry:last-child { border-bottom: none; }
+.log-goal { color: #16A34A; font-weight: 600; }
+
+/* Badges */
+.b-loc    { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; padding: 1px 7px; border-radius: 10px; font-size: .75rem; white-space: nowrap; }
+.b-agenda { background: #F5F3FF; color: #6D28D9; border: 1px solid #DDD6FE; padding: 1px 6px; border-radius: 10px; font-size: .7rem; }
+.b-g      { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; padding: 1px 7px; border-radius: 10px; font-size: .73rem; font-weight: 600; }
+.b-goal   { background: #FEF9C3; color: #854D0E; border: 1px solid #FDE68A; padding: 1px 8px; border-radius: 10px; font-size: .73rem; font-weight: 700; }
+.empty-set { color: var(--muted); font-style: italic; }
+
+/* Controls */
+#controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  cursor: pointer;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: background .15s, border-color .15s;
+}
+.btn:hover { background: var(--bg); border-color: #9CA3AF; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: #2563EB; }
+#speed-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  font-size: .8rem;
+  color: var(--muted);
+}
+#speed-slider { width: 100px; accent-color: var(--accent); }
+
+/* Goal summary */
+#goal-summary {
+  background: var(--panel);
+  border: 2px solid #16A34A;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(22,163,74,.15);
+}
+#goal-summary h2 { font-size: 1rem; font-weight: 700; color: #166534; margin-bottom: 12px; }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.summary-box { background: var(--bg); border-radius: 8px; padding: 10px 14px; }
+.summary-box .val { font-size: 1.5rem; font-weight: 700; color: #166534; }
+.summary-box .lbl { font-size: .72rem; color: var(--muted); margin-top: 2px; }
+#summary-path-box { font-size: .8rem; color: #374151; line-height: 1.6; background: #F0FDF4; border-radius: 8px; padding: 10px 14px; }
+#summary-path-box strong { display: block; color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 4px; }
+
+/* Error */
+.error { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; border-radius: 10px; padding: 20px; text-align: center; }
+.error code { background: #fff; padding: 2px 6px; border-radius: 4px; font-size: .85rem; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1>Uniform Cost Search — Rute Optimal Kampus</h1>
+    <div id="step-counter">Memuat…</div>
+  </header>
+
+  <div id="panels">
+    <!-- Left: Map -->
+    <div id="map-panel">
+      <h2>Peta Kampus</h2>
+      <svg id="campus-map" viewBox="0 0 640 510" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#16A34A"/>
+          </marker>
+        </defs>
+        <g id="edges-layer"></g>
+        <g id="path-layer"></g>
+        <g id="nodes-layer"></g>
+      </svg>
+      <div id="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-expanding);border-color:var(--s-expanding)"></div> Sedang di-expand</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-frontier);border-color:#60A5FA"></div> Di frontier</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-explored);border-color:#9CA3AF"></div> Sudah di-expand</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-optimal);border-color:var(--s-optimal)"></div> Rute optimal</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#fff;border-color:var(--s-start);border-width:3px"></div> Gerbang Utama</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#fff;border-color:var(--s-agenda);border-width:3px"></div> Agenda</div>
+      </div>
+    </div>
+
+    <!-- Right: Search process -->
+    <div id="search-panel">
+
+      <!-- Stats -->
+      <div class="card">
+        <div class="card-title">Statistik</div>
+        <div id="stats-bar">
+          <div class="stat-box"><div class="stat-val" id="stat-expanded">—</div><div class="stat-lbl">Node Expanded</div></div>
+          <div class="stat-box"><div class="stat-val" id="stat-frontier">—</div><div class="stat-lbl">Frontier</div></div>
+          <div class="stat-box"><div class="stat-val" id="stat-explored">—</div><div class="stat-lbl">Explored</div></div>
+        </div>
+      </div>
+
+      <!-- Current state -->
+      <div class="card">
+        <div class="card-title">State yang Di-expand</div>
+        <div id="current-state"><span style="color:var(--muted)">—</span></div>
+      </div>
+
+      <!-- Frontier table -->
+      <div class="card">
+        <div class="card-title">Priority Queue (Frontier)</div>
+        <div id="frontier-wrap">
+          <table id="frontier-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Lokasi</th>
+                <th>Agenda Selesai</th>
+                <th>g</th>
+              </tr>
+            </thead>
+            <tbody id="frontier-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Log -->
+      <div class="card">
+        <div class="card-title">Log Ekspansi</div>
+        <div id="log-wrap"><div id="log"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div id="controls">
+    <button class="btn" id="btn-reset">⏮ Reset</button>
+    <button class="btn" id="btn-prev">◀ Prev</button>
+    <button class="btn btn-primary" id="btn-next">▶ Next</button>
+    <button class="btn" id="btn-end">⏭ End</button>
+    <button class="btn" id="btn-play">▶▶ Play</button>
+    <div id="speed-wrap">
+      <span>Kecepatan</span>
+      <input type="range" id="speed-slider" min="1" max="10" value="5">
+    </div>
+  </div>
+
+  <!-- Goal summary (hidden until goal reached) -->
+  <div id="goal-summary" hidden>
+    <h2>🎯 Rute Optimal Ditemukan!</h2>
+    <div class="summary-grid">
+      <div class="summary-box"><div class="val" id="sum-cost">—</div><div class="lbl">Total Menit</div></div>
+      <div class="summary-box"><div class="val" id="sum-expanded">—</div><div class="lbl">Node Di-expand</div></div>
+      <div class="summary-box"><div class="val" id="sum-frontier-max">—</div><div class="lbl">Frontier Maks</div></div>
+      <div class="summary-box"><div class="val" id="sum-agendas">—</div><div class="lbl">Agenda Selesai</div></div>
+    </div>
+    <div id="summary-path-box">
+      <strong>Rute Lengkap</strong>
+      <span id="sum-path">—</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const OFFSET = 55; // SVG padding
+
+let data = null;
+let currentStep = 0;
+let autoTimer = null;
+let logMessages = [];
+const nodeCircles = {};
+const nodeGroups  = {};
+
+// Short names for display in badges / log
+const DISPLAY = {};  // filled after data loads
+
+function abbrev(id) {
+  const map = {
+    'Gerbang Utama':  'GU',
+    'Perpustakaan':   'PR',
+    'Kantin':         'KT',
+    'Gedung Olahraga':'GOR',
+  };
+  return map[id] || id;
+}
+
+function shortName(id) {
+  const map = {
+    'Gerbang Utama':  'G.Utama',
+    'Perpustakaan':   'Perpustakaan',
+    'Kantin':         'Kantin',
+    'Gedung Olahraga':'Ged. Olahraga',
+  };
+  return map[id] || id;
+}
+
+function svg(tag) {
+  return document.createElementNS('http://www.w3.org/2000/svg', tag);
+}
+
+// ── Build static SVG ─────────────────────────────────────────────
+function buildMap() {
+  const edgesLayer = document.getElementById('edges-layer');
+  const nodesLayer = document.getElementById('nodes-layer');
+  const nodeMap = {};
+  data.graph.nodes.forEach(n => nodeMap[n.id] = n);
+
+  // Edges
+  data.graph.edges.forEach(e => {
+    const f = nodeMap[e.from], t = nodeMap[e.to];
+    const x1 = f.x + OFFSET, y1 = f.y + OFFSET;
+    const x2 = t.x + OFFSET, y2 = t.y + OFFSET;
+
+    const line = svg('line');
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+    line.setAttribute('class', 'edge');
+    edgesLayer.appendChild(line);
+
+    // Weight label: perpendicular offset to avoid overlap with line
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.hypot(dx, dy) || 1;
+    const px = -dy / len * 11, py = dx / len * 11;
+    const lx = (x1 + x2) / 2 + px, ly = (y1 + y2) / 2 + py;
+
+    const label = svg('text');
+    label.setAttribute('x', lx); label.setAttribute('y', ly);
+    label.setAttribute('class', 'edge-label');
+    label.textContent = e.weight;
+    edgesLayer.appendChild(label);
+  });
+
+  // Nodes
+  data.graph.nodes.forEach(n => {
+    const cx = n.x + OFFSET, cy = n.y + OFFSET;
+    const g = svg('g');
+    g.setAttribute('class', 'node-group');
+
+    const circle = svg('circle');
+    circle.setAttribute('cx', cx); circle.setAttribute('cy', cy);
+    circle.setAttribute('r', 20);
+    circle.setAttribute('class', 'node-circle');
+    circle.setAttribute('fill', 'var(--c-default)');
+    circle.setAttribute('stroke', 'var(--s-default)');
+
+    const abbrText = svg('text');
+    abbrText.setAttribute('x', cx); abbrText.setAttribute('y', cy);
+    abbrText.setAttribute('class', 'node-abbrev');
+    abbrText.textContent = abbrev(n.id);
+
+    // Label below
+    const lbl = svg('text');
+    lbl.setAttribute('x', cx);
+    lbl.setAttribute('class', 'node-label');
+    // Two-line label for long names
+    const parts = shortName(n.id).split(' ');
+    if (parts.length > 1) {
+      lbl.setAttribute('y', cy + 32);
+      const t1 = svg('tspan'); t1.setAttribute('x', cx); t1.setAttribute('dy', '0');  t1.textContent = parts[0];
+      const t2 = svg('tspan'); t2.setAttribute('x', cx); t2.setAttribute('dy', '12'); t2.textContent = parts.slice(1).join(' ');
+      lbl.appendChild(t1); lbl.appendChild(t2);
+    } else {
+      lbl.setAttribute('y', cy + 32);
+      lbl.textContent = parts[0];
+    }
+
+    g.appendChild(circle);
+    g.appendChild(abbrText);
+    g.appendChild(lbl);
+    nodesLayer.appendChild(g);
+
+    nodeCircles[n.id] = circle;
+    nodeGroups[n.id]  = g;
+  });
+}
+
+// ── Pre-compute per-step explored set (by location, for visual) ──
+let exploredAtStep = [];
+function precomputeExplored() {
+  const acc = new Set();
+  data.trace.forEach((t, i) => {
+    if (!t.is_goal) acc.add(t.expanded_state.location);
+    exploredAtStep[i] = new Set(acc);
+  });
+}
+
+// ── Pre-compute log messages ────────────────────────────────────
+function precomputeLog() {
+  data.trace.forEach(t => {
+    const doneStr = t.expanded_state.done.length === 0
+      ? '{}'
+      : '{' + t.expanded_state.done.map(shortName).join(', ') + '}';
+    if (t.is_goal) {
+      logMessages.push(`<span class="log-goal">🎯 GOAL ditemukan — (${shortName(t.expanded_state.location)}, ${doneStr}) g=${t.g}</span>`);
+    } else {
+      logMessages.push(`Expand (<span class="b-loc">${shortName(t.expanded_state.location)}</span>, ${doneStr}) g=${t.g} → frontier: ${t.frontier.length} state`);
+    }
+  });
+}
+
+// ── Render step ─────────────────────────────────────────────────
+function goto(step) {
+  currentStep = Math.max(0, Math.min(step, data.trace.length - 1));
+  renderStep(currentStep);
+}
+
+function renderStep(step) {
+  const t = data.trace[step];
+  const explored = exploredAtStep[step];
+  const frontierLocs = new Set(t.frontier.map(f => f.location));
+  const expandedLoc  = t.expanded_state.location;
+
+  // Step counter
+  document.getElementById('step-counter').textContent =
+    `Langkah ${step + 1} / ${data.trace.length}`;
+
+  // ── Node colors ──
+  data.graph.nodes.forEach(n => {
+    const c = nodeCircles[n.id];
+    if (!c) return;
+    let fill   = 'var(--c-default)';
+    let stroke = 'var(--s-default)';
+    let sw     = 2.5;
+
+    if (n.id === expandedLoc) {
+      fill = 'var(--c-expanding)'; stroke = 'var(--s-expanding)'; sw = 3.5;
+    } else if (t.is_goal && data.result.path.includes(n.id)) {
+      fill = 'var(--c-optimal)'; stroke = 'var(--s-optimal)'; sw = 3.5;
+    } else if (explored.has(n.id)) {
+      fill = 'var(--c-explored)';
+    } else if (frontierLocs.has(n.id)) {
+      fill = 'var(--c-frontier)'; stroke = '#60A5FA';
+    }
+
+    // Type-based border override
+    if (n.id === data.start) { stroke = 'var(--s-start)'; sw = Math.max(sw, 3.5); }
+    else if (data.agendas.includes(n.id) && n.id !== expandedLoc) { stroke = 'var(--s-agenda)'; sw = Math.max(sw, 3); }
+
+    c.setAttribute('fill', fill);
+    c.setAttribute('stroke', stroke);
+    c.setAttribute('stroke-width', sw);
+  });
+
+  // ── Optimal path overlay ──
+  const pathLayer = document.getElementById('path-layer');
+  pathLayer.innerHTML = '';
+  if (t.is_goal) {
+    const nodeMap = {};
+    data.graph.nodes.forEach(n => nodeMap[n.id] = n);
+    const p = data.result.path;
+    for (let i = 0; i < p.length - 1; i++) {
+      const f = nodeMap[p[i]], to = nodeMap[p[i+1]];
+      const line = svg('line');
+      line.setAttribute('x1', f.x + OFFSET);  line.setAttribute('y1', f.y + OFFSET);
+      line.setAttribute('x2', to.x + OFFSET); line.setAttribute('y2', to.y + OFFSET);
+      line.setAttribute('class', 'optimal-edge');
+      pathLayer.appendChild(line);
+    }
+  }
+
+  // ── Stats ──
+  const nonGoalSteps = data.trace.filter(x => !x.is_goal).length;
+  document.getElementById('stat-expanded').textContent = t.is_goal ? nonGoalSteps : t.step;
+  document.getElementById('stat-frontier').textContent = t.frontier.length;
+  document.getElementById('stat-explored').textContent = t.explored_count;
+
+  // ── Current state ──
+  const doneHTML = t.expanded_state.done.length === 0
+    ? '<span class="empty-set">{}</span>'
+    : t.expanded_state.done.map(a => `<span class="b-agenda">${shortName(a)}</span>`).join(' ');
+  document.getElementById('current-state').innerHTML =
+    `<span class="b-loc">${shortName(expandedLoc)}</span> &nbsp;done: ${doneHTML} &nbsp;<span class="b-g">g = ${t.g}</span>` +
+    (t.is_goal ? ' &nbsp;<span class="b-goal">🎯 GOAL</span>' : '');
+
+  // ── Frontier table ──
+  const tbody = document.getElementById('frontier-body');
+  tbody.innerHTML = '';
+  if (t.frontier.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#9CA3AF;padding:12px">— kosong —</td></tr>';
+  } else {
+    t.frontier.forEach((item, idx) => {
+      const tr = document.createElement('tr');
+      if (idx === 0) tr.classList.add('row-top');
+      const doneB = item.done.length === 0
+        ? '<span class="empty-set">{}</span>'
+        : item.done.map(a => `<span class="b-agenda">${shortName(a)}</span>`).join(' ');
+      tr.innerHTML =
+        `<td class="rank-cell">${idx+1}</td>` +
+        `<td><span class="b-loc">${shortName(item.location)}</span></td>` +
+        `<td>${doneB}</td>` +
+        `<td><span class="b-g">g=${item.g}</span></td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ── Log ──
+  const log = document.getElementById('log');
+  log.innerHTML = logMessages.slice(0, step + 1)
+    .map(m => `<div class="log-entry">${m}</div>`).join('');
+  log.parentElement.scrollTop = log.parentElement.scrollHeight;
+
+  // ── Goal summary ──
+  if (t.is_goal) {
+    const maxFrontier = Math.max(...data.trace.map(x => x.frontier.length + (x.is_goal ? 0 : 1)));
+    document.getElementById('sum-cost').textContent    = data.result.total_cost;
+    document.getElementById('sum-expanded').textContent = nonGoalSteps;
+    document.getElementById('sum-frontier-max').textContent = maxFrontier;
+    document.getElementById('sum-agendas').textContent  = data.agendas.length + '/' + data.agendas.length;
+    document.getElementById('sum-path').textContent     = data.result.path.map(shortName).join(' → ');
+    document.getElementById('goal-summary').hidden = false;
+    stopPlay();
+  } else {
+    document.getElementById('goal-summary').hidden = true;
+  }
+}
+
+// ── Controls ────────────────────────────────────────────────────
+function next() {
+  if (currentStep < data.trace.length - 1) goto(currentStep + 1);
+  else stopPlay();
+}
+function prev()    { goto(currentStep - 1); }
+function reset()   { stopPlay(); goto(0); }
+function jumpEnd() { stopPlay(); goto(data.trace.length - 1); }
+
+function startPlay() {
+  const speed    = parseInt(document.getElementById('speed-slider').value);
+  const interval = Math.round(1100 - speed * 95);
+  stopPlay();
+  autoTimer = setInterval(() => {
+    if (currentStep >= data.trace.length - 1) { stopPlay(); return; }
+    next();
+  }, interval);
+  document.getElementById('btn-play').textContent = '⏸ Pause';
+}
+
+function stopPlay() {
+  if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  document.getElementById('btn-play').textContent = '▶▶ Play';
+}
+
+function togglePlay() { autoTimer ? stopPlay() : startPlay(); }
+
+document.getElementById('btn-reset').addEventListener('click', reset);
+document.getElementById('btn-prev').addEventListener('click', prev);
+document.getElementById('btn-next').addEventListener('click', next);
+document.getElementById('btn-end').addEventListener('click', jumpEnd);
+document.getElementById('btn-play').addEventListener('click', togglePlay);
+document.getElementById('speed-slider').addEventListener('input', () => {
+  if (autoTimer) { stopPlay(); startPlay(); }
+});
+
+// ── Init ─────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const resp = await fetch('trace.json');
+    if (!resp.ok) throw new Error(resp.statusText);
+    data = await resp.json();
+    buildMap();
+    precomputeExplored();
+    precomputeLog();
+    goto(0);
+  } catch (e) {
+    document.getElementById('app').innerHTML =
+      `<div class="error">
+        <strong>Gagal memuat trace.json</strong><br><br>
+        Pastikan sudah menjalankan:<br>
+        <code>python src/main.py</code>&nbsp; lalu &nbsp;
+        <code>cd src && python -m http.server 8000</code>
+      </div>`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>

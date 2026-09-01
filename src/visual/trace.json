@@ -1,0 +1,5665 @@
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": "Gerbang Utama",
+        "x": 60,
+        "y": 330
+      },
+      {
+        "id": "J1",
+        "x": 155,
+        "y": 195
+      },
+      {
+        "id": "J2",
+        "x": 195,
+        "y": 325
+      },
+      {
+        "id": "J3",
+        "x": 285,
+        "y": 140
+      },
+      {
+        "id": "J4",
+        "x": 395,
+        "y": 255
+      },
+      {
+        "id": "Perpustakaan",
+        "x": 190,
+        "y": 50
+      },
+      {
+        "id": "Kantin",
+        "x": 310,
+        "y": 375
+      },
+      {
+        "id": "Gedung Olahraga",
+        "x": 480,
+        "y": 110
+      }
+    ],
+    "edges": [
+      {
+        "from": "Gerbang Utama",
+        "to": "J1",
+        "weight": 3
+      },
+      {
+        "from": "Gerbang Utama",
+        "to": "J2",
+        "weight": 5
+      },
+      {
+        "from": "J1",
+        "to": "Perpustakaan",
+        "weight": 4
+      },
+      {
+        "from": "J1",
+        "to": "J3",
+        "weight": 2
+      },
+      {
+        "from": "J2",
+        "to": "Kantin",
+        "weight": 3
+      },
+      {
+        "from": "J2",
+        "to": "J4",
+        "weight": 4
+      },
+      {
+        "from": "J3",
+        "to": "Gedung Olahraga",
+        "weight": 5
+      },
+      {
+        "from": "J3",
+        "to": "Kantin",
+        "weight": 6
+      },
+      {
+        "from": "J4",
+        "to": "Gedung Olahraga",
+        "weight": 3
+      },
+      {
+        "from": "J4",
+        "to": "Perpustakaan",
+        "weight": 7
+      }
+    ]
+  },
+  "agendas": [
+    "Gedung Olahraga",
+    "Kantin",
+    "Perpustakaan"
+  ],
+  "start": "Gerbang Utama",
+  "result": {
+    "path": [
+      "Gerbang Utama",
+      "J1",
+      "Perpustakaan",
+      "J4",
+      "Gedung Olahraga",
+      "J4",
+      "J2",
+      "Kantin",
+      "J2",
+      "Gerbang Utama"
+    ],
+    "total_cost": 35
+  },
+  "trace": [
+    {
+      "step": 1,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": []
+      },
+      "g": 0,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [],
+          "g": 3
+        },
+        {
+          "location": "J2",
+          "done": [],
+          "g": 5
+        }
+      ],
+      "explored_count": 1,
+      "is_goal": false
+    },
+    {
+      "step": 2,
+      "expanded_state": {
+        "location": "J1",
+        "done": []
+      },
+      "g": 3,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [],
+          "g": 5
+        },
+        {
+          "location": "J3",
+          "done": [],
+          "g": 5
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 7
+        }
+      ],
+      "explored_count": 2,
+      "is_goal": false
+    },
+    {
+      "step": 3,
+      "expanded_state": {
+        "location": "J2",
+        "done": []
+      },
+      "g": 5,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [],
+          "g": 5
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 7
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 8
+        },
+        {
+          "location": "J4",
+          "done": [],
+          "g": 9
+        }
+      ],
+      "explored_count": 3,
+      "is_goal": false
+    },
+    {
+      "step": 4,
+      "expanded_state": {
+        "location": "J3",
+        "done": []
+      },
+      "g": 5,
+      "frontier": [
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 7
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 8
+        },
+        {
+          "location": "J4",
+          "done": [],
+          "g": 9
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 10
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        }
+      ],
+      "explored_count": 4,
+      "is_goal": false
+    },
+    {
+      "step": 5,
+      "expanded_state": {
+        "location": "Perpustakaan",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 7,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 8
+        },
+        {
+          "location": "J4",
+          "done": [],
+          "g": 9
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 10
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        }
+      ],
+      "explored_count": 5,
+      "is_goal": false
+    },
+    {
+      "step": 6,
+      "expanded_state": {
+        "location": "Kantin",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 8,
+      "frontier": [
+        {
+          "location": "J4",
+          "done": [],
+          "g": 9
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 10
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        }
+      ],
+      "explored_count": 6,
+      "is_goal": false
+    },
+    {
+      "step": 7,
+      "expanded_state": {
+        "location": "J4",
+        "done": []
+      },
+      "g": 9,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 10
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 11
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 12
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        }
+      ],
+      "explored_count": 7,
+      "is_goal": false
+    },
+    {
+      "step": 8,
+      "expanded_state": {
+        "location": "Gedung Olahraga",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 10,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 11
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 12
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        }
+      ],
+      "explored_count": 8,
+      "is_goal": false
+    },
+    {
+      "step": 9,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 11,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Kantin"
+          ],
+          "g": 11
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 12
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        }
+      ],
+      "explored_count": 9,
+      "is_goal": false
+    },
+    {
+      "step": 10,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 11,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 12
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        }
+      ],
+      "explored_count": 10,
+      "is_goal": false
+    },
+    {
+      "step": 11,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 13,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 13
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        }
+      ],
+      "explored_count": 11,
+      "is_goal": false
+    },
+    {
+      "step": 12,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 13,
+      "frontier": [
+        {
+          "location": "J4",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        }
+      ],
+      "explored_count": 12,
+      "is_goal": false
+    },
+    {
+      "step": 13,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 14,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Kantin"
+          ],
+          "g": 14
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        }
+      ],
+      "explored_count": 13,
+      "is_goal": false
+    },
+    {
+      "step": 14,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 14,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 14
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        }
+      ],
+      "explored_count": 14,
+      "is_goal": false
+    },
+    {
+      "step": 15,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 14,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 15
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        }
+      ],
+      "explored_count": 15,
+      "is_goal": false
+    },
+    {
+      "step": 16,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 15,
+      "frontier": [
+        {
+          "location": "J4",
+          "done": [
+            "Kantin"
+          ],
+          "g": 15
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        }
+      ],
+      "explored_count": 16,
+      "is_goal": false
+    },
+    {
+      "step": 17,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 15,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 17,
+      "is_goal": false
+    },
+    {
+      "step": 18,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 16,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 16
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 18,
+      "is_goal": false
+    },
+    {
+      "step": 19,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Kantin"
+        ]
+      },
+      "g": 16,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 19,
+      "is_goal": false
+    },
+    {
+      "step": 20,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 17,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 17
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 20,
+      "is_goal": false
+    },
+    {
+      "step": 21,
+      "expanded_state": {
+        "location": "Gedung Olahraga",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 17,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 17
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 21,
+      "is_goal": false
+    },
+    {
+      "step": 22,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 17,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 22,
+      "is_goal": false
+    },
+    {
+      "step": 23,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Perpustakaan"
+        ]
+      },
+      "g": 18,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 18
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        }
+      ],
+      "explored_count": 23,
+      "is_goal": false
+    },
+    {
+      "step": 24,
+      "expanded_state": {
+        "location": "Gedung Olahraga",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 18,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        }
+      ],
+      "explored_count": 24,
+      "is_goal": false
+    },
+    {
+      "step": 25,
+      "expanded_state": {
+        "location": "Kantin",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 19,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Perpustakaan"
+          ],
+          "g": 19
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin"
+          ],
+          "g": 19
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        }
+      ],
+      "explored_count": 25,
+      "is_goal": false
+    },
+    {
+      "step": 26,
+      "expanded_state": {
+        "location": "Perpustakaan",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 20,
+      "frontier": [
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        }
+      ],
+      "explored_count": 26,
+      "is_goal": false
+    },
+    {
+      "step": 27,
+      "expanded_state": {
+        "location": "Perpustakaan",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 20,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 20
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        }
+      ],
+      "explored_count": 27,
+      "is_goal": false
+    },
+    {
+      "step": 28,
+      "expanded_state": {
+        "location": "Kantin",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 20,
+      "frontier": [
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        }
+      ],
+      "explored_count": 28,
+      "is_goal": false
+    },
+    {
+      "step": 29,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 20,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 20
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        }
+      ],
+      "explored_count": 29,
+      "is_goal": false
+    },
+    {
+      "step": 30,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Gedung Olahraga"
+        ]
+      },
+      "g": 20,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 21
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 21
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        }
+      ],
+      "explored_count": 30,
+      "is_goal": false
+    },
+    {
+      "step": 31,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 21,
+      "frontier": [
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 31,
+      "is_goal": false
+    },
+    {
+      "step": 32,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 22,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 22
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 32,
+      "is_goal": false
+    },
+    {
+      "step": 33,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 22,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 33,
+      "is_goal": false
+    },
+    {
+      "step": 34,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 23,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 23
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 34,
+      "is_goal": false
+    },
+    {
+      "step": 35,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 23,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 35,
+      "is_goal": false
+    },
+    {
+      "step": 36,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 24,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 36,
+      "is_goal": false
+    },
+    {
+      "step": 37,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 24,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        }
+      ],
+      "explored_count": 37,
+      "is_goal": false
+    },
+    {
+      "step": 38,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 24,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 24
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        }
+      ],
+      "explored_count": 38,
+      "is_goal": false
+    },
+    {
+      "step": 39,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 25,
+      "frontier": [
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 25
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        }
+      ],
+      "explored_count": 39,
+      "is_goal": false
+    },
+    {
+      "step": 40,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 25,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        }
+      ],
+      "explored_count": 40,
+      "is_goal": false
+    },
+    {
+      "step": 41,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 26,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 26
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        }
+      ],
+      "explored_count": 41,
+      "is_goal": false
+    },
+    {
+      "step": 42,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 27,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        }
+      ],
+      "explored_count": 42,
+      "is_goal": false
+    },
+    {
+      "step": 43,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Gedung Olahraga",
+          "Perpustakaan"
+        ]
+      },
+      "g": 27,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 27
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        }
+      ],
+      "explored_count": 43,
+      "is_goal": false
+    },
+    {
+      "step": 44,
+      "expanded_state": {
+        "location": "Kantin",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 27,
+      "frontier": [
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        }
+      ],
+      "explored_count": 44,
+      "is_goal": false
+    },
+    {
+      "step": 45,
+      "expanded_state": {
+        "location": "Perpustakaan",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 28,
+      "frontier": [
+        {
+          "location": "Kantin",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 45,
+      "is_goal": false
+    },
+    {
+      "step": 46,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin"
+        ]
+      },
+      "g": 28,
+      "frontier": [
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin"
+          ],
+          "g": 28
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Perpustakaan",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 29
+        },
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 46,
+      "is_goal": false
+    },
+    {
+      "step": 47,
+      "expanded_state": {
+        "location": "Gedung Olahraga",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 29,
+      "frontier": [
+        {
+          "location": "Gedung Olahraga",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J2",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 30
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 47,
+      "is_goal": false
+    },
+    {
+      "step": 48,
+      "expanded_state": {
+        "location": "J2",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 30,
+      "frontier": [
+        {
+          "location": "J1",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 48,
+      "is_goal": false
+    },
+    {
+      "step": 49,
+      "expanded_state": {
+        "location": "J1",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 32,
+      "frontier": [
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 32
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 49,
+      "is_goal": false
+    },
+    {
+      "step": 50,
+      "expanded_state": {
+        "location": "J4",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 32,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 33
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 50,
+      "is_goal": false
+    },
+    {
+      "step": 51,
+      "expanded_state": {
+        "location": "J3",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 33,
+      "frontier": [
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J3",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 34
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "J4",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        },
+        {
+          "location": "Gerbang Utama",
+          "done": [
+            "Gedung Olahraga",
+            "Kantin",
+            "Perpustakaan"
+          ],
+          "g": 35
+        }
+      ],
+      "explored_count": 51,
+      "is_goal": false
+    },
+    {
+      "step": 52,
+      "expanded_state": {
+        "location": "Gerbang Utama",
+        "done": [
+          "Gedung Olahraga",
+          "Kantin",
+          "Perpustakaan"
+        ]
+      },
+      "g": 35,
+      "frontier": [],
+      "explored_count": 51,
+      "is_goal": true
+    }
+  ]
+}
