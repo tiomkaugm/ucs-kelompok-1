@@ -15,9 +15,9 @@ GRAPH: dict[str, list[tuple[str, int]]] = {
     START:        [("J1", 3), ("J2", 5)],
     "J1":         [(START, 3), (PERPUSTAKAAN, 4), ("J3", 2)],
     "J2":         [(START, 5), (KANTIN, 3), ("J4", 4)],
-    "J3":         [("J1", 2), (GOR, 5), (KANTIN, 6)],
-    "J4":         [("J2", 4), (GOR, 3), (PERPUSTAKAAN, 7)],
-    PERPUSTAKAAN: [("J1", 4), ("J4", 7)],
+    "J3":         [("J1", 2), (GOR, 5), (KANTIN, 6), ("J4", 4), (PERPUSTAKAAN, 3)],
+    "J4":         [("J2", 4), (GOR, 3), ("J3", 4)],
+    PERPUSTAKAAN: [("J1", 4), ("J3", 3)],
     KANTIN:       [("J2", 3), ("J3", 6)],
     GOR:          [("J3", 5), ("J4", 3)],
 }
