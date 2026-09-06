@@ -33,7 +33,10 @@ def ucs(
         if node not in graph:
             raise ValueError(f"Node agenda '{node}' tidak ditemukan di graf.")
 
+    # counter jadi tie-breaker urutan heap saat cost sama, karena frozenset/list
+    # di tuple tidak bisa dibandingkan langsung oleh heapq
     counter = 0
+    # start bisa juga jadi agenda (mis. agenda = start), jadi langsung tandai selesai
     initial_done = agendas & {start}
     frontier: list[tuple[int, int, str, frozenset, list[str]]] = [
         (0, counter, start, initial_done, [start])
@@ -45,9 +48,11 @@ def ucs(
 
     while frontier:
         max_frontier = max(max_frontier, len(frontier))
+        # heap terurut berdasarkan cost (elemen pertama tuple), jadi pop selalu ambil node termurah
         cost, _, loc, done, path = heapq.heappop(frontier)
 
-        # Goal test saat di-pop — menjamin optimalitas UCS
+        # Goal test saat di-pop (bukan saat push) — menjamin optimalitas UCS,
+        # karena elemen yang di-pop dijamin punya cost minimum di antara yang tersisa
         if loc == start and done == agendas:
             if trace_sink is not None:
                 trace_sink.append({
@@ -63,12 +68,15 @@ def ucs(
 
         state = (loc, done)
         if state in explored:
+            # state (lokasi, agenda_selesai) yang sama bisa masuk frontier lebih dari
+            # sekali lewat jalur berbeda; skip duplikat yang sudah pernah di-expand
             continue
         explored.add(state)
         nodes_expanded += 1
 
         for neighbor, weight in graph.get(loc, []):
             new_cost = cost + weight
+            # tandai agenda selesai jika neighbor adalah salah satu node agenda
             new_done = done | ({neighbor} & agendas)
             new_state = (neighbor, new_done)
             if new_state not in explored:
